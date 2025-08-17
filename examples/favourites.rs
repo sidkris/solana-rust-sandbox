@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("");
+declare_id!("2mJkhHAUevG3cNztjyh681AfKeiiJgaj8jeinJBUVeWj");
 
 pub const ANCHOR_DISCRIMINATOR_SIZE: usize = 8;
 
@@ -13,7 +13,7 @@ pub mod favourites {
         number: u64,
         colour: String,
         hobbies: Vec<String>,
-    ) -> Return<()> {
+    ) -> Result<()> {
         msg!("Hello from {}", context.program_id);
         let user_public_key = context.accounts.user.key();
         msg!("User {user_public_key}'s favourite colour is {colour}");
@@ -41,6 +41,7 @@ pub struct Favourites {
     pub hobbies: Vec<String>,
 }
 
+#[derive(Accounts)]
 pub struct SetFavourites<'info> {
     #[account(mut)]
     pub user: Signer<'info>,
@@ -48,7 +49,7 @@ pub struct SetFavourites<'info> {
     #[account(
         init_if_needed,
         payer = user,
-        space = ANCHOR_DISCRIMINATOR_SIZE + Favourites,
+        space = ANCHOR_DISCRIMINATOR_SIZE + Favourites::INIT_SPACE,
         seeds = [b"favourites", user.key().as_ref()],
         bump
     )]
