@@ -1,4 +1,4 @@
-# gill-next-tailwind
+# voting-dapp
 
 This is a Next.js app containing:
 
@@ -12,7 +12,7 @@ This is a Next.js app containing:
 #### Download the template
 
 ```shell
-pnpm create solana-dapp@latest -t gh:solana-foundation/templates/gill/gill-next-tailwind
+pnpm create solana-dapp@latest -t gh:solana-foundation/templates/gill/voting-dapp
 ```
 
 #### Install Dependencies
